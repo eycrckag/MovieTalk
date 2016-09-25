@@ -1,49 +1,33 @@
-'use strict';
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+'use strict' ;
+
 
 import React from 'react';
 import {
-  Text,
   View,
-  Image,
+  Text,
   ListView,
-  ActivityIndicator,
   TouchableHighlight,
+  Image,
 } from 'react-native';
 import styles from '../styles/main';
-import MovieDetail from './MovieDetail';
+import MovieDetail from './MovieDetail.js';
 
-const REQUEST_URL = "https://api.douban.com/v2/movie/top250";
-class MovieList extends React.Component {
+class SearchResult extends React.Component {
+
   constructor(props){
     super(props);
+    console.log(this.props.result);
 
+    //先定义一个listView,判断每一行的数据是否发生变化
+    let dataSource = new ListView.DataSource({
+      rowHasChanged:(row1,row2) => row1 !== row2
+    });
+    //
+    // //设置状态，让搜索出来的结果放在listview
     this.state = {
-      movies: new ListView.DataSource({
-        rowHasChanged:(row1,row2) => row1 !== row2
-      }),
-      loaded: true
-    };
-
-    this.fetchData();
-  }
-
-  fetchData() {
-    fetch(REQUEST_URL)
-      .then(response => response.json())
-      .then(responseData => {
-        console.log(responseData.subjects)
-        this.setState({
-          movies:this.state.movies.cloneWithRows(responseData.subjects),
-          loaded:false
-        });
-      })
-      .done();
-
+      movies:dataSource.cloneWithRows(this.props.result)
+    }
+    console.log(this.state.movies);
   }
 
   showMovieDetail(movie){
@@ -74,27 +58,14 @@ class MovieList extends React.Component {
   }
 
   render() {
-    if(this.state.loaded){
-      return (
-        <View style={styles.container}>
-          <View style={styles.loading}>
-          <ActivityIndicator
-            color='#6435c9'
-            size="large"
-          />
-          </View>
-        </View>
-      );
-    }
     return (
       <View style={styles.container}>
         <ListView  dataSource={this.state.movies}
           renderRow={this.renderMovieList.bind(this)}
         />
       </View>
-
     );
   }
 }
 
-export { MovieList as default};
+export { SearchResult as default};

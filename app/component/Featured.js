@@ -12,6 +12,7 @@ import styles from '../styles/main';
 import MovieList from './MovieList';
 import navStyle from '../styles/nav';
 import UsBox from './UsBox';
+import Search from './Search';
 
 
 
@@ -64,7 +65,6 @@ class Featured extends React.Component {
 
   constructor(props){
     super(props);
-    console.log(this.props.TabContent);
 
   }
 
@@ -94,6 +94,8 @@ class Featured extends React.Component {
       return MovieList;
     else if (this.props.TabContent == 'UsBox') {
       return UsBox;
+    }else if (this.props.TabContent == 'Search') {
+      return Search;
     }
   }
 

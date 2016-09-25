@@ -46,14 +46,12 @@ class MovieTalk extends React.Component {
       return (<Featured TabContent='MovieList' tabName='推荐电影'/>);
     }else if (TabContent == 'UsBox') {
       return (<Featured TabContent={TabContent} tabName='北美票房'/>);
-
-    }else{
-      return (<MovieList/>);
+    }else if (TabContent == 'Search'){
+      return (<Featured TabContent={TabContent} tabName='搜索'/>);
     }
   }
 
   renderTabView(title,TabName,TabContent){
-    console.log(TabContent);
     var renderIconUrl ;
     var renderSelectedIconUrl ;
     switch (TabName) {
@@ -65,9 +63,9 @@ class MovieTalk extends React.Component {
           renderIconUrl = icons.board;
           renderSelectedIconUrl = icons.boardActive;
           break;
-      case 'Featured':
-          renderIconUrl = 'https://raw.githubusercontent.com/jjhappyforever/TouTiaoTabBar/master/images/tabbar_3.png';
-          renderSelectedIconUrl = 'https://raw.githubusercontent.com/jjhappyforever/TouTiaoTabBar/master/images/tabbar_3_press.png';
+      case 'Search':
+          renderIconUrl = icons.search;
+          renderSelectedIconUrl = icons.search;
           break;
       case 'About':
           renderIconUrl = './images/tabbar4.png';
@@ -97,6 +95,8 @@ class MovieTalk extends React.Component {
       <TabNavigator  tabBarStyle={styles.tab}   hidesTabTouch={false} >
         {this.renderTabView('推荐电影','Home','MovieList')}
         {this.renderTabView('北美票房','UsBox','UsBox')}
+        {this.renderTabView('搜索','Search','Search')}
+
         {/* {this.renderTabView('Featured','Featured','Featured')} */}
 
 

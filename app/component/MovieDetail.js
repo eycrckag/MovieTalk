@@ -14,7 +14,7 @@ class MovieDetail extends React.Component {
   constructor(props){
     super(props);
 
-    console.log(this.props.movie);
+    // console.log(this.props.movie);
     this.state = {
       MovieDetail: '',
       loaded:true,
