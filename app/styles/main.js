@@ -3,6 +3,22 @@
 import {StyleSheet} from 'react-native';
 
 let styles = StyleSheet.create({
+  delete:{
+    width:16,
+    height:16,
+    marginLeft:10,
+    paddingTop:2,
+    marginTop:4,
+    opacity:0.8,
+    tintColor:'red',
+  },
+  searchHistoryHeader:{
+    fontSize:17,
+    color:'rgba(0,0,0,0.8)',
+    marginLeft:6,
+    marginTop:15,
+    marginBottom:20,
+  },
   item:{
     flexDirection:'row',
     borderBottomWidth:1,
